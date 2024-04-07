@@ -20,7 +20,11 @@ dotenv.config({path:'Backend/config/config.env'});
 //connecting to Database
 connectDatabase();
 
-app.use(express.json({limit:"10mb"})); 
+app.use(express.json({limit:"10mb",
+verify:(req,res,buf)=>{
+    req.rawbody = buf.toString();
+}
+})); 
 // engatha ella routes file import pandrom C:\MERN\Backend\routes\products.js
 app.use(cookieParser());
 
